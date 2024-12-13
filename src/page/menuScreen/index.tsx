@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
-import { BackgoundScreen } from '../../assets';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BackgoundScreen } from '../../assets';
 import { END_POINT } from '../../constaints/endpoint';
 
 const MenuScreen = () => {
@@ -9,7 +9,7 @@ const MenuScreen = () => {
   const fetchData = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://10.10.21.38:5100/api${END_POINT.GENERATE}`
+        `${import.meta.env.VITE_API_ENDPOINT}/${END_POINT.GENERATE}`
       );
       const data = await response.json();
       return data.data;
@@ -23,7 +23,7 @@ const MenuScreen = () => {
     try {
       const data = await fetchData();
       if (data && data.id) {
-        navigate(`/pve/${data.id}`);
+        navigate(`/pve?gameId=${data.id}`, { state: { ...data } });
       } else {
         console.error('ID not found in fetched data');
       }

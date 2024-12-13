@@ -1,5 +1,5 @@
 export const END_POINT = {
-  GENERATE: '/games/generate-game',
-  SUBMIT: '/games/submit-game',
-  GAME: '/games',
+  GENERATE: 'api/games/generate-game',
+  SUBMIT: 'api/games/submit-game',
+  GAME: 'api/games',
 };
