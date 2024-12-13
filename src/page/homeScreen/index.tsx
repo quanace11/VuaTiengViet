@@ -13,16 +13,22 @@ import {
   IconsSound,
 } from '../../components/Icons';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '@clerk/clerk-react';
 
 const HomeScreen = () => {
   const navigate = useNavigate();
+  const { isSignedIn } = useUser();
   const [isSoundOn, setIsSoundOn] = React.useState(true);
 
   const toggleSound = () => {
     setIsSoundOn(!isSoundOn);
   };
-  const handleNavigate = () => {
-    navigate('/game');
+  const handleNavigate = (name: string) => {
+    navigate(`${name}`);
+  };
+
+  const handleSignIn = () => {
+    navigate('/login');
   };
 
   return (
@@ -48,20 +54,22 @@ const HomeScreen = () => {
             )}
           </button>
         </div>
-        <div className="flex flex-row gap-4 ">
-          <button
-            onClick={handleNavigate}
-            className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
-          >
-            <IconFaceBook className="h-14 w-14 p-3" />
-          </button>
-          <button
-            onClick={handleNavigate}
-            className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
-          >
-            <IconGoogle className="h-14 w-14 text-white p-3" />
-          </button>
-        </div>
+        {!isSignedIn && (
+          <div className="flex flex-row gap-4 ">
+            <button
+              onClick={handleSignIn}
+              className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
+            >
+              <IconFaceBook className="h-14 w-14 p-3" />
+            </button>
+            <button
+              onClick={handleSignIn}
+              className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
+            >
+              <IconGoogle className="h-14 w-14 text-white p-3" />
+            </button>
+          </div>
+        )}
       </div>
       <div className="flex flex-col flex-grow justify-around py-16">
         <div className="text-center  flex-1">
@@ -78,7 +86,7 @@ const HomeScreen = () => {
 
         <div className="grid grid-cols-5 sm:gap-6 gap-1 justify-items-center lg:px-40 ">
           <div
-            onClick={handleNavigate}
+            onClick={() => handleNavigate('/game')}
             className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center "
           >
             <button className="w-full flex justify-center flex-1">
@@ -90,7 +98,7 @@ const HomeScreen = () => {
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center  ">
             <button
-              onClick={handleNavigate}
+              // onClick={handleNavigate}
               className="w-full flex justify-center"
             >
               <IconReward className="h-[52px]" />
@@ -101,7 +109,7 @@ const HomeScreen = () => {
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center">
             <button
-              onClick={handleNavigate}
+              // onClick={handleNavigate}
               className="w-full flex justify-center"
             >
               <IconMedal className="h-[52px]" />
@@ -112,7 +120,7 @@ const HomeScreen = () => {
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
             <button
-              onClick={handleNavigate}
+              // onClick={handleNavigate}
               className="w-full flex justify-center"
             >
               <IconSetting className="h-[52px] w-[52px]" />
@@ -123,7 +131,7 @@ const HomeScreen = () => {
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
             <button
-              onClick={handleNavigate}
+              onClick={() => handleNavigate('/user-profile')}
               className="w-full flex justify-center py-6"
             >
               <IconProfile className="h-[52px] w-10" />

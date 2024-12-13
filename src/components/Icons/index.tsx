@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ExitIcon,
   FacebookIcon,
   GoogleIcon,
   HeartIcon,
@@ -178,6 +179,21 @@ export const IconGoogle: React.FC<PlayIconProps> = ({
   return (
     <img
       src={GoogleIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+export const IconExit: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={ExitIcon}
       alt="Button Icon"
       width={width}
       height={height}

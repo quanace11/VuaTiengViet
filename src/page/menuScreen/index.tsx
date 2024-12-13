@@ -4,11 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { END_POINT } from '../../constaints/endpoint';
 
 const MenuScreen = () => {
-  //   enum GameMode {
-  //     CLASSIC = 'classic',
-  //     TIME_ATTACK = 'time-attack',
-  //     MULTIPLAYER = 'multiplayer',
-  //   }
+
   const navigate = useNavigate();
   const fetchData = useCallback(async () => {
     try {

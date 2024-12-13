@@ -9,3 +9,4 @@ export { default as PlayIcon } from './PlayIcon.png';
 export { default as MenuIcon } from './MenuIcon_1.png';
 export { default as FacebookIcon } from './FacebookIcon.png';
 export { default as GoogleIcon } from './googleIcon.png';
+export { default as ExitIcon } from './ExitIcon.png';
