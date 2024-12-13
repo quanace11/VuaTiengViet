@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Avatar, BackgoundScreen } from '../../assets';
 import { IconMenu } from '../../components/Icons';
 
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { END_POINT } from '../../constaints/endpoint';
-import { useNavigate, useParams } from 'react-router-dom';
 
 interface ICharacter {
   char: string;
@@ -25,22 +25,28 @@ interface ISubmitResponse {
   }>;
 }
 
+import { useLocation } from 'react-router-dom';
+
 const GameScreen = () => {
-  const [feedback, setFeedback] = useState<string>('Make some noise');
-  const [gameData, setGameData] = useState<IGameData>();
+  const {state} = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const [feedback, setFeedback] = useState<string>('Coi bộ khó à nghennn!');
+  const [gameData, setGameData] = useState<IGameData | undefined>(
+    state as IGameData ?? undefined
+  );
   const [listCharacters, setListCharacters] = useState<ICharacter[]>([]);
   const [inputCharacters, setInputCharacters] = useState<(ICharacter | null)[]>(
     []
   );
 
-  const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
 
   // API calls
   const fetchNewGame = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://10.10.21.38:5100/api${END_POINT.GENERATE}`
+        `${import.meta.env.VITE_API_ENDPOINT}/${END_POINT.GENERATE}`
       );
       if (!response.ok) throw new Error('Network response was not ok');
       const { data } = await response.json();
@@ -54,7 +60,7 @@ const GameScreen = () => {
   const fetchGameById = useCallback(async (gameId: string) => {
     try {
       const response = await fetch(
-        `http://10.10.21.38:5100/api${END_POINT.GAME}/${gameId}`
+        `${import.meta.env.VITE_API_ENDPOINT}/${END_POINT.GAME}/${gameId}`
       );
       if (!response.ok) throw new Error('Network response was not ok');
       const { data } = await response.json();
@@ -69,7 +75,7 @@ const GameScreen = () => {
     async (gameId: string, letters: string[]) => {
       try {
         const response = await fetch(
-          `http://10.10.21.38:5100/api${END_POINT.SUBMIT}`,
+          `${import.meta.env.VITE_API_ENDPOINT}/${END_POINT.SUBMIT}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -78,7 +84,6 @@ const GameScreen = () => {
         );
         if (!response.ok) throw new Error('Network response was not ok');
         const { data } = await response.json();
-
         return data as ISubmitResponse;
       } catch (error) {
         console.error('Error submitting answer:', error);
@@ -100,18 +105,24 @@ const GameScreen = () => {
 
   // Load game data
   useEffect(() => {
-    if (!id) return;
-
+    if (!searchParams.get("gameId")) {
+      navigate('/game');
+      return;
+    }
+    if (gameData) return;
     const loadGame = async () => {
-      const data = await fetchGameById(id);
-      if (data) {
-        setGameData(data);
-        setFeedback('Giải giùm tôi câu này');
+      const data = await fetchGameById(searchParams.get("gameId")!);
+      if (!data) {
+        navigate('/game');
+        return;
       }
+      setGameData(data);
+    setFeedback('Bạn đi hỏi GPT à? Chơi đàng hoàng nghennn!');
     };
 
     loadGame();
-  }, [fetchGameById, id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Initialize game characters
   useEffect(() => {
@@ -126,7 +137,6 @@ const GameScreen = () => {
 
   // Check answer completion
   useEffect(() => {
-    console.log('test vao day');
     const checkAnswer = async () => {
       if (!inputCharacters.length || !gameData?.id) return;
       if (!inputCharacters.every((char) => char !== null)) return;
@@ -143,7 +153,8 @@ const GameScreen = () => {
         setFeedback('Bạn giải đúng rồi qua câu tiếp nhé.');
         const newGame = await fetchNewGame();
         if (newGame?.id) {
-          navigate(`/pve/${newGame.id}`);
+          setSearchParams({ gameId: newGame.id });
+          setGameData(newGame);
         }
       } else {
         const correctCount = result.letters.filter(
