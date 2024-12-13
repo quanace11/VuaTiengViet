@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  FacebookIcon,
+  GoogleIcon,
   HeartIcon,
   MedalIcon,
   MenuIcon,
@@ -146,6 +148,36 @@ export const IconMenu: React.FC<PlayIconProps> = ({
   return (
     <img
       src={MenuIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+export const IconFaceBook: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={FacebookIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+export const IconGoogle: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={GoogleIcon}
       alt="Button Icon"
       width={width}
       height={height}

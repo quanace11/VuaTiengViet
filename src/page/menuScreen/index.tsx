@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { BackgoundScreen } from '../../assets';
 import { useNavigate } from 'react-router-dom';
+import { END_POINT } from '../../constaints/endpoint';
 
 const MenuScreen = () => {
   //   enum GameMode {
@@ -9,8 +10,30 @@ const MenuScreen = () => {
   //     MULTIPLAYER = 'multiplayer',
   //   }
   const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate('/pve');
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `http://10.10.21.38:5100/api${END_POINT.GENERATE}`
+      );
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error:', error);
+      return [];
+    }
+  }, []);
+
+  const handleNavigate = async () => {
+    try {
+      const data = await fetchData();
+      if (data && data.id) {
+        navigate(`/pve/${data.id}`);
+      } else {
+        console.error('ID not found in fetched data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (

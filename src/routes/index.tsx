@@ -6,7 +6,7 @@ export const routes = createBrowserRouter([
     element: <RouteChange />,
     children: [
       {
-        path: '/pve',
+        path: '/',
         element: <HomeScreen />,
       },
       {
@@ -14,7 +14,7 @@ export const routes = createBrowserRouter([
         element: <MenuScreen />,
       },
       {
-        path: '/',
+        path: `/pve/:id`,
         element: <GameScreen />,
       },
     ],

@@ -3,6 +3,8 @@ import React from 'react';
 import { BackgoundScreen } from '../../assets';
 
 import {
+  IconFaceBook,
+  IconGoogle,
   IconMedal,
   IconPlay,
   IconProfile,
@@ -30,25 +32,41 @@ const HomeScreen = () => {
         backgroundImage: `url(${BackgoundScreen})`,
       }}
     >
-      <div className="flex justify-start ">
-        <button
-          onClick={toggleSound}
-          className="bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all"
-        >
-          {isSoundOn ? (
-            <IconsSound />
-          ) : (
-            <div className="relative">
+      <div className="flex flex-row justify-between">
+        <div className="flex  ">
+          <button
+            onClick={toggleSound}
+            className="bg-white/20 hover:bg-white/30 p-3 rounded-full transition-all"
+          >
+            {isSoundOn ? (
               <IconsSound />
-              <div className="absolute top-[-5px] left-[10px] right-0 border w-1 h-9 bg-red-600 transform rotate-45 "></div>
-            </div>
-          )}
-        </button>
+            ) : (
+              <div className="relative">
+                <IconsSound />
+                <div className="absolute top-[-5px] left-[10px] right-0 border w-1 h-9 bg-red-600 transform rotate-45 "></div>
+              </div>
+            )}
+          </button>
+        </div>
+        <div className="flex flex-row gap-4 ">
+          <button
+            onClick={handleNavigate}
+            className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
+          >
+            <IconFaceBook className="h-14 w-14 p-3" />
+          </button>
+          <button
+            onClick={handleNavigate}
+            className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
+          >
+            <IconGoogle className="h-14 w-14 text-white p-3" />
+          </button>
+        </div>
       </div>
-      <div className="flex flex-col justify-around  flex-grow">
-        <div className="text-center mt-20 flex-1">
+      <div className="flex flex-col flex-grow justify-around py-16">
+        <div className="text-center  flex-1">
           <h1
-            className="text-9xl font-extrabold text-white drop-shadow-lg animate-bounce"
+            className="text-7xl sm:text-9xl font-extrabold text-white drop-shadow-lg animate-bounce"
             style={{
               WebkitTextStroke: '0.1px black',
               color: 'white',
@@ -58,19 +76,19 @@ const HomeScreen = () => {
           </h1>
         </div>
 
-        <div className="grid grid-cols-5 gap-6 w-full  mb-10 justify-items-center px-40">
+        <div className="grid grid-cols-5 sm:gap-6 gap-1 justify-items-center lg:px-40 ">
           <div
             onClick={handleNavigate}
-            className="relative py-6 px-10 rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item  "
+            className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center "
           >
-            <button className="w-full flex justify-center">
+            <button className="w-full flex justify-center flex-1">
               <IconPlay className="h-[52px] w-[40px] " />
             </button>
             <p className=" absolute text-3xl  text-white top-[120px] left-[20%] invisible group-hover/item:visible">
               Play
             </p>
           </div>
-          <div className="relative py-6 px-10 rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item  ">
+          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center  ">
             <button
               onClick={handleNavigate}
               className="w-full flex justify-center"
@@ -81,7 +99,7 @@ const HomeScreen = () => {
               Reward
             </p>
           </div>
-          <div className="relative py-6 px-10 rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item  ">
+          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center">
             <button
               onClick={handleNavigate}
               className="w-full flex justify-center"
@@ -92,7 +110,7 @@ const HomeScreen = () => {
               Medal
             </p>
           </div>
-          <div className="relative py-6 px-10 rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item  ">
+          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
             <button
               onClick={handleNavigate}
               className="w-full flex justify-center"
@@ -103,7 +121,7 @@ const HomeScreen = () => {
               Setting
             </p>
           </div>
-          <div className="relative  px-10 rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item  ">
+          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
             <button
               onClick={handleNavigate}
               className="w-full flex justify-center py-6"
