@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ExitIcon,
   FacebookIcon,
+  GameIcon,
   GoogleIcon,
   HeartIcon,
   MedalIcon,
@@ -194,6 +195,22 @@ export const IconExit: React.FC<PlayIconProps> = ({
   return (
     <img
       src={ExitIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+
+export const IconGame: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={GameIcon}
       alt="Button Icon"
       width={width}
       height={height}

@@ -4,6 +4,7 @@ import { BackgoundScreen } from '../../assets';
 
 import {
   IconFaceBook,
+  IconGame,
   IconGoogle,
   IconMedal,
   IconPlay,
@@ -58,15 +59,10 @@ const HomeScreen = () => {
           <div className="flex flex-row gap-4 ">
             <button
               onClick={handleSignIn}
-              className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
+              className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center flex flex-row gap-4 p-3"
             >
-              <IconFaceBook className="h-14 w-14 p-3" />
-            </button>
-            <button
-              onClick={handleSignIn}
-              className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center "
-            >
-              <IconGoogle className="h-14 w-14 text-white p-3" />
+              <IconGame className="h-6 w-6 " />{' '}
+              <p className="text-white">Login</p>
             </button>
           </div>
         )}

@@ -1,8 +1,19 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { GameScreen, HomeScreen, MenuScreen } from '../page';
-import LoginPage from '../page/loginScreen';
-import UserProfileScreen from '../page/userScreen';
+import {
+  ErrorPage,
+  GameOnlineScreen,
+  GameScreen,
+  HomeScreen,
+  LoginPage,
+  MenuScreen,
+  SignUpPage,
+  UserProfileScreen,
+} from '../page';
+
 import RouteChange from './RouteChange';
+import ProtectedRoute from './ProtectedRoute';
+
+import { AuthenticateWithRedirectCallback } from '@clerk/clerk-react';
 
 export const routes = createBrowserRouter([
   {
@@ -28,6 +39,16 @@ export const routes = createBrowserRouter([
         path: '/login',
         element: <LoginPage />,
       },
+      {
+        path: '/sign-up',
+        element: <SignUpPage />,
+      },
+      { path: '/sso-callback', element: <AuthenticateWithRedirectCallback /> },
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: '/online', element: <GameOnlineScreen /> }],
+      },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);
