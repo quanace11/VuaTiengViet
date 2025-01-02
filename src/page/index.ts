@@ -6,3 +6,4 @@ export { default as LoginPage } from './loginScreen';
 export { default as GameOnlineScreen } from './gameScreen/pveOnlineScreen';
 export { default as ErrorPage } from './ErrorPage';
 export { default as UserProfileScreen } from './userScreen';
+export { default as PvpScreen } from './gameScreen/pvpScreen';

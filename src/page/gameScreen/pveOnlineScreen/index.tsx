@@ -1,10 +1,9 @@
-import React from 'react';
-import { useGameLogic } from '../../../hooks';
+import React, { useState } from 'react';
+import { useRankLogic } from '../../../hooks';
 import { Avatar, BackgoundScreen } from '../../../assets';
 
-import { IconMenu } from '../../../components/Icons';
 import InputCharacters from '../../../components/InputCharacter';
-import { ButtonCharacter } from '../../../components';
+import { ButtonCharacter, ButtonMenu, MenuGame } from '../../../components';
 
 const GameOnlineScreen = () => {
   const {
@@ -13,8 +12,12 @@ const GameOnlineScreen = () => {
     inputCharacters,
     feedback,
     handleCharacterClick,
-  } = useGameLogic();
+  } = useRankLogic();
   console.log('test');
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const handleOpenMenu = () => setIsMenuOpen(true);
+  const handleCloseMenu = () => setIsMenuOpen(false);
   return (
     <div
       className="flex flex-col min-h-screen bg-gradient-to-b from-green-400 to-green-600 px-7 md:px-20 gap-6 lg:gap-16 relative"
@@ -30,7 +33,7 @@ const GameOnlineScreen = () => {
             color: 'white',
           }}
         >
-          GAME
+          {`GAME LEVEL ${gameData?.level}`}
         </h1>
       </div>
 
@@ -65,11 +68,9 @@ const GameOnlineScreen = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 right-0 flex lg:mr-[20px] md:mr-[20px] sm:mr-[20px] mr-[10px] mb-2">
-        <button>
-          <IconMenu className="h-[30px] w-[30px] md:h-[44px] md:w-[50px]" />
-        </button>
-      </div>
+      <ButtonMenu onOpenMenu={handleOpenMenu} />
+
+      <MenuGame isOpen={isMenuOpen} onClose={handleCloseMenu} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useAuth } from '@clerk/clerk-react';
 import { BackgoundScreen } from '../assets';
 import { IconExit } from '../components/Icons';
 
+
 const ProtectedRoute: React.FC = () => {
   const { isSignedIn } = useAuth();
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const ProtectedRoute: React.FC = () => {
   const handleNavigate = () => {
     navigate('/');
   };
+
   if (!isSignedIn) {
     return (
       <div

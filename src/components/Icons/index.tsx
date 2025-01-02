@@ -1,15 +1,18 @@
 import React from 'react';
 import {
+  CongratulationIcon,
   ExitIcon,
   FacebookIcon,
   GameIcon,
   GoogleIcon,
   HeartIcon,
+  InfoIcon,
   MedalIcon,
   MenuIcon,
   PlayIcon,
   ProfileIcon,
   RewardIcon,
+  SearchIcon,
   SettingIcon,
   SoundIcon,
   TimeIcon,
@@ -211,6 +214,51 @@ export const IconGame: React.FC<PlayIconProps> = ({
   return (
     <img
       src={GameIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+export const IconSearch: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={SearchIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+export const IconCongratulation: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={CongratulationIcon}
+      alt="Button Icon"
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+};
+export const IconInfo: React.FC<PlayIconProps> = ({
+  width = '50px',
+  height = '50px',
+  className = '',
+}) => {
+  return (
+    <img
+      src={InfoIcon}
       alt="Button Icon"
       width={width}
       height={height}

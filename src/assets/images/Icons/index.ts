@@ -11,3 +11,6 @@ export { default as FacebookIcon } from './FacebookIcon.png';
 export { default as GoogleIcon } from './googleIcon.png';
 export { default as ExitIcon } from './ExitIcon.png';
 export { default as GameIcon } from './GameIcon.png';
+export { default as SearchIcon } from './searchIcon.png';
+export { default as CongratulationIcon } from './congratulation.png';
+export { default as InfoIcon } from './InfoIcon.png';

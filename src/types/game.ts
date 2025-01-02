@@ -9,6 +9,12 @@ export interface IGameData {
   wordId: string;
   wordLetters: string[];
 }
+export interface IGameCurrentData {
+  id: string;
+  wordId: string;
+  wordLetters: string[];
+  level: number;
+}
 
 export interface ISubmitResponse {
   isCorrect: boolean;
@@ -26,4 +32,9 @@ export interface CharactersProps {
 export interface InputCharactersProps {
   inputCharacters: (ICharacter | null)[];
   handleCharacterClick: (char: ICharacter, fromInput?: boolean) => void;
+}
+export interface IUser {
+  id: string;
+  display_name: string;
+  avatar_url: string;
 }

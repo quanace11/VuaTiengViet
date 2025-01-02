@@ -3,6 +3,7 @@ import { END_POINT } from '../../constaints/endpoint';
 import { useAuth } from '@clerk/clerk-react';
 import { ICharacter, IGameData, ISubmitResponse } from '../../types/game';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSoundEffects } from '../useSoundEffects';
 
 export const useGameLogic = () => {
   const { getToken } = useAuth();
@@ -21,6 +22,7 @@ export const useGameLogic = () => {
       Authorization: token ? `Bearer ${token}` : '',
     };
   }, [getToken]);
+  const { playSound } = useSoundEffects();
 
   // API calls
   const fetchNewGame = useCallback(async () => {
@@ -129,6 +131,7 @@ export const useGameLogic = () => {
   const handleCharacterClick = useCallback(
     (char: ICharacter, fromInput: boolean = false) => {
       if (fromInput) {
+        playSound('removeCharacter');
         setListCharacters((prev) =>
           prev.map((item) =>
             item.position === char.position ? { ...item, check: false } : item
@@ -142,6 +145,7 @@ export const useGameLogic = () => {
           (slot) => slot === null
         );
         if (emptySlotIndex === -1) return;
+        playSound('clickCharacter');
 
         setListCharacters((prev) =>
           prev.map((item) =>
@@ -155,6 +159,7 @@ export const useGameLogic = () => {
         });
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [inputCharacters]
   );
   const checkAnswer = useCallback(async () => {
@@ -169,13 +174,18 @@ export const useGameLogic = () => {
     if (!result) return;
 
     if (result.isCorrect) {
+      playSound('correctAnswer');
       setFeedback('Bạn giải đúng rồi qua câu tiếp nhé.');
       const newGame = await fetchNewGame();
       if (newGame?.id) {
         setSearchParams({ gameId: newGame.id });
         setGameData(newGame);
       }
+      setTimeout(() => {
+        setFeedback('Thử giải câu này xemm');
+      }, 900);
     } else {
+      playSound('wrongAnswer');
       const correctCount = result.letters.filter(
         (item) => item.isMatched
       ).length;
@@ -184,9 +194,17 @@ export const useGameLogic = () => {
         `Sao bạn dở dữ vậy, có ${correctCount} kí tự đúng và ${wrongCount} kí tự sai`
       );
     }
-  }, [inputCharacters, gameData, submitAnswer, fetchNewGame, setSearchParams]);
+  }, [
+    inputCharacters,
+    gameData,
+    submitAnswer,
+    fetchNewGame,
+    setSearchParams,
+    playSound,
+  ]);
   useEffect(() => {
     checkAnswer();
+  
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCharacters]);
   console.log(gameData);
