@@ -10,7 +10,7 @@ const BackgroundMusic: React.FC<BackgroundMusicProps> = ({
   volume = 0.5,
   autoPlay = true,
 }) => {
-  //   const [isPlaying, setIsPlaying] = useState(autoPlay);
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const { settings } = useGameSettings();

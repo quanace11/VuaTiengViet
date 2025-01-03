@@ -31,6 +31,8 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
       stopFindOpponent();
       setTime(0);
     };
+ 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array means this runs once when component mounts
 
   const handleCancel = () => {
@@ -43,6 +45,7 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
       startGame(gameState.gameId ?? '');
       navigate('/pvp');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opponent]);
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 z-50 fixed inset-0 bg-opacity-50">
@@ -51,7 +54,7 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
             Tìm Trận
           </h1>
-          <p className="text-slate-400"> players online</p>
+          <p className="text-slate-400"> Số người đang chơi</p>
         </div>
 
         <div className="flex items-center gap-4 bg-slate-700/50 rounded-lg p-4 mb-6">
@@ -70,7 +73,7 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
           <div className="flex justify-center"></div>
           <div className="text-slate-300">Tìm kiếm trận đấu...</div>
           <div className="text-sm text-slate-400">
-            Time elapsed: {formatTime(time)}
+            Đếm xuôi: {formatTime(time)}
           </div>
         </div>
 

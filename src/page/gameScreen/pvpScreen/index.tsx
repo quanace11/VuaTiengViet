@@ -2,8 +2,9 @@ import InputCharacters from '../../../components/InputCharacter';
 import {
   ButtonCharacter,
   ButtonMenu,
-  IconExit,
+  GameExitDialog,
   MenuGame,
+  TimeRound,
 } from '../../../components';
 import { useUserProfile } from '../../../hooks';
 import { useSocketContext } from '../../../hooks/useSocketContext';
@@ -16,16 +17,15 @@ const PvpScreen = () => {
   const navigate = useNavigate();
   const { userInfo } = useUserProfile();
   const { gameState, currentPlayer, opponent, exitGame } = useSocketContext();
-  // const [inputLetters, setInputLetters] = useState<string[]>([]);
-  // const [message, setMessage] = useState<string>('');
-  console.log(gameState);
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { listCharacters, inputCharacters, handleCharacterClick } =
     useGamePvpLogic();
-  const handleNavigateHome = () => {
+  const handleConfirmExit = () => {
     exitGame(gameState.gameId ?? '');
     navigate('/game');
   };
+
 
   const handleOpenMenu = () => setIsMenuOpen(true);
   const handleCloseMenu = () => setIsMenuOpen(false);
@@ -37,12 +37,7 @@ const PvpScreen = () => {
             Trận Đấu
           </h1>
           <div className="flex items-center gap-2 text-slate-400">
-            <button
-              className="p-2 hover:bg-white rounded-xl"
-              onClick={handleNavigateHome}
-            >
-              <IconExit className="w-8" />
-            </button>
+            <GameExitDialog onConfirmExit={handleConfirmExit} />
           </div>
         </div>
       </div>
@@ -73,7 +68,7 @@ const PvpScreen = () => {
             <span className="text-slate-400">Thời Gian</span>
           </div>
           <div className="text-3xl font-bold text-emerald-400">
-            {gameState.timeLeft}
+            <TimeRound time={gameState.timeLeft ?? 180} />
           </div>
         </div>
 
