@@ -66,7 +66,7 @@ const HomeScreen = () => {
                   className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center flex flex-row gap-4 p-3"
                 >
                   <IconGame className="h-6 w-6 " />{' '}
-                  <p className="text-white">Login</p>
+                  <p className="text-white">Đăng Nhập</p>
                 </button>
               </div>
             )
@@ -94,7 +94,7 @@ const HomeScreen = () => {
               <IconPlay className="h-[52px] w-[40px] " />
             </button>
             <p className=" absolute text-3xl  text-white top-[120px] left-[20%] invisible group-hover/item:visible">
-              Play
+              Chơi
             </p>
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center  ">
@@ -105,7 +105,7 @@ const HomeScreen = () => {
               <IconReward className="h-[52px]" />
             </button>
             <p className=" absolute text-3xl  text-white top-[120px] left-[1%] invisible group-hover/item:visible">
-              Reward
+              Thứ Hạng
             </p>
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center">
@@ -127,7 +127,7 @@ const HomeScreen = () => {
               <IconSetting className="h-[52px] w-[52px]" />
             </button>
             <p className=" absolute text-3xl  text-white top-[120px] left-[5%] invisible group-hover/item:visible">
-              Setting
+              Cài Đặt
             </p>
           </div>
           <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
@@ -138,7 +138,7 @@ const HomeScreen = () => {
               <IconProfile className="h-[52px] w-10" />
             </button>
             <p className=" absolute text-3xl  text-white top-[120px] left-[5%] invisible group-hover/item:visible">
-              Profile
+              Hồ Sơ
             </p>
           </div>
         </div>

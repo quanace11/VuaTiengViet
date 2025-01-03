@@ -36,7 +36,7 @@ const WaitingRoom = () => {
             </div>
             <div className="flex gap">
               <div>
-                <h2 className="text-xl font-bold">PlayerName</h2>
+                <h2 className="text-xl font-bold">{userInfo?.display_name}</h2>
                 <div className="flex items-center space-x-2">
                   <IconReward className="h-5 w-5 text-yellow-500" />
                   <span className="font-semibold">1234</span>
@@ -62,12 +62,12 @@ const WaitingRoom = () => {
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="Search for players..."
+                placeholder="Tìm kiếm người chơi bằng Id..."
                 className="w-full px-6 py-4 bg-slate-700/50 rounded-lg pl-12 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
               />
             </div>
             <button className="px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold transition-colors flex items-center gap-2">
-              Search
+              Tìm kiếm
             </button>
           </div>
         </div>
@@ -79,18 +79,18 @@ const WaitingRoom = () => {
             className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 hover:scale-105 transition-transform cursor-pointer shadow-lg w-full"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold">Ranked Match</h3>
+              <h3 className="text-2xl font-bold">Tìm Trận</h3>
               <IconReward className="h-8 w-8" />
             </div>
             <p className="text-gray-200 mb-6">
-              Compete in ranked matches to climb the leaderboard
+              Thi đấu trong các trận xếp hạng để leo lên bảng xếp hạng
             </p>
-            <div className="flex items-center justify-between">
-              <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
+            <div className="flex items-center justify-end">
+              {/* <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
                 Season 1 Active
-              </span>
+              </span> */}
               <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Find Match
+                Tìm Trận
               </button>
             </div>
           </div>

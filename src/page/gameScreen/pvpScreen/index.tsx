@@ -34,7 +34,7 @@ const PvpScreen = () => {
       <div className=" mx-auto mb-8">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-clip-text text-transparent  bg-gradient-to-r from-purple-400 to-pink-400">
-            Word Battle
+            Trận Đấu
           </h1>
           <div className="flex items-center gap-2 text-slate-400">
             <button
@@ -70,7 +70,7 @@ const PvpScreen = () => {
 
         <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-slate-400">Time Left</span>
+            <span className="text-slate-400">Thời Gian</span>
           </div>
           <div className="text-3xl font-bold text-emerald-400">
             {gameState.timeLeft}
@@ -115,16 +115,6 @@ const PvpScreen = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2">
-        <div className="flex gap-4">
-          <div className="bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-lg text-sm font-medium">
-            Perfect! +1 point
-          </div>
-          <div className="bg-slate-800/90 text-slate-300 px-4 py-2 rounded-lg text-sm font-medium">
-            Opponent is thinking...
-          </div>
-        </div>
-      </div>
       <ButtonMenu onOpenMenu={handleOpenMenu} />
 
       <MenuGame isOpen={isMenuOpen} onClose={handleCloseMenu} />

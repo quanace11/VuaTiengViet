@@ -85,6 +85,9 @@ export const useSocket = () => {
     socket.on(GameEvents.GAME_ERROR, (data: { message: string }) => {
       console.error('Game error:', data.message);
       toast.error(data.message);
+      if (data.message === 'Player not found') {
+        navigate('/');
+      }
     });
 
     socket.on(
@@ -97,11 +100,11 @@ export const useSocket = () => {
         console.log('data WORD_SUBMIT_RESULT', data);
         if (data.isCorrect) {
           playSound('correctAnswer');
-          toast.success('Correct word!');
+          toast.success('Bạn giải đúng rồi, qua câu khác nhé!');
           console.log('Correct word!');
         } else {
           playSound('wrongAnswer');
-          toast.error('Incorrect word. Try again.');
+          toast.error('Đáp án không đúng, hãy thử lại');
           console.log('Incorrect word. Try again.');
         }
       }
@@ -114,6 +117,8 @@ export const useSocket = () => {
         toast.info(data.message);
         if (data.winner) {
           playSound(checkUser(data.winner?.id) ? 'winner' : 'lose');
+        } else {
+          playSound('draw');
         }
         showWinner(
           data.winner

@@ -8,6 +8,7 @@ interface SoundEffects {
   removeCharacter: HTMLAudioElement;
   lose: HTMLAudioElement;
   winner: HTMLAudioElement;
+  draw: HTMLAudioElement;
 }
 
 export const useSoundEffects = () => {
@@ -19,7 +20,8 @@ export const useSoundEffects = () => {
     wrongAnswer: new Audio('/sfx/wrongSound1.mp3'),
     removeCharacter: new Audio('/sfx/removeSound.mp3'),
     lose: new Audio('/sfx/loseSound1.mp3'),
-    winner: new Audio('/sfx/winnerSound.mp3')
+    winner: new Audio('/sfx/winnerSound.mp3'),
+    draw: new Audio('/sfx/drawSound.mp3'),
   };
 
   Object.values(sounds).forEach((sound) => {
